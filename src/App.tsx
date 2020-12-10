@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import "materialize-css/dist/css/materialize.min.css";
+// @ts-ignore
+import M from "materialize-css/dist/js/materialize.min.js";
+
+import AddPatientModal from './components/patients/AddPatientModal'
+import PatientList from './components/patients/PatientList'
+import AddButton from './components/layout/AddButton'
 
 function App() {
+   useEffect(() => {
+    // init materialize JS
+    M.AutoInit();
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <>
+      <div className="container">
+        <h1>Journal App</h1>
+        <PatientList />
+        <AddButton />
+        <AddPatientModal />
+      </div>
+    </>
   );
 }
 
