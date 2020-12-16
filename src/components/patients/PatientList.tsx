@@ -4,14 +4,9 @@ const PatientList = () => {
     const [patients, setPatients] = useState<any[]>([]);
 
     const getPatients = async () => {
-        try {
             const response = await fetch("http://92.33.147.95:35000/patient/all");
             const jsonData = await response.json();
             setPatients(jsonData)
-        } catch (error) {
-            console.log(error);
-            
-        }
     }
 
     useEffect(() => {
@@ -23,8 +18,10 @@ const PatientList = () => {
             {
                 patients.map(patient => {
                     return <div>
-                        <h2>{patient.firstName}</h2>
-                        <h2>{patient.lastName}</h2>
+                        <h4>{patient.FirstName} {patient.LastName}</h4>
+                        <p>Personnummer: {patient.SocialSecurityNumber}</p>
+                        <p>Identification Type: {patient.IdentificationType}</p>
+                        <p>Skapad av: {patient.CreatedBy} - <span>{patient.CreatedDate}</span></p>
                     </div>
                 })
             }
