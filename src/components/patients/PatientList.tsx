@@ -5,7 +5,7 @@ const PatientList = () => {
 
     const deletePatient = async (ssn: string) => {
         try {
-            const deletePatient = await fetch(`${process.env.REACT_APP_API_URL}/patient/:${ssn}`, {
+            const deletePatient = await fetch(`${process.env.REACT_APP_API_URL}/patient/${ssn}`, {
                 method: "DELETE",
             });
             setPatients(patients.filter(patient => patient.SocialSecurityNumber !== ssn))
@@ -29,7 +29,7 @@ const PatientList = () => {
             {
                 patients.map(patient => {
                     return <div key={patient.SocialSecurityNumber}>
-                        <h4>{patient.FirstName} {patient.LastName}</h4>   
+                        <h4>{patient.FirstName} {patient.LastName}</h4>
                         <button onClick={() => deletePatient(patient.SocialSecurityNumber)}>
                             <i className="material-icons">clear</i>
                         </button>
