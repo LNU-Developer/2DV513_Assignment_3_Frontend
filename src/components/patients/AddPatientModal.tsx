@@ -12,19 +12,19 @@ const AddPatientModal = () => {
     const [proofOfIdentification, setProofOfIdentification] = useState(true)
     const [identificationType, setIdentificationType] = useState('')
     const [createdBy, setCreatedBy] = useState(null)
-    
+
     const onSubmit = async (e:any) => {
         e.preventDefault()
         try {
             const body = {firstName, lastName, ssn, phone, adress, postalNo, city, email, proofOfIdentification, identificationType, createdBy}
-            const response = await fetch("http://92.33.147.95:35000/patient/all", {
+            const response = await fetch(process.env.REACT_APP_API_URL+"/patient/all", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             })
         } catch (error) {
             console.log(error);
-            
+
         }
 
     if (firstName === "" || lastName === "" || ssn === "") {
