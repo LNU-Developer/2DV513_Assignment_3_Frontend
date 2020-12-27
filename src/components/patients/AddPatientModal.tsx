@@ -1,41 +1,41 @@
 import React, {useState} from 'react'
 
 const AddPatientModal = () => {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [ssn, setSSN] = useState('')
-    const [phone, setPhone] = useState("")
-    const [adress, setAddress] = useState("")
-    const [postalNo, setPostalNo] = useState("")
-    const [city, setCity] = useState("")
-    const [email, setEmail] = useState("")
-    const [proofOfIdentification, setProofOfIdentification] = useState(true)
-    const [identificationType, setIdentificationType] = useState('')
-    const [createdBy, setCreatedBy] = useState(null)
-    
-    const onSubmit = async (e:any) => {
+    const [FirstName, setFirstName] = useState('')
+    const [LastName, setLastName] = useState('')
+    const [SocialSecurityNumber, setSSN] = useState('')
+    const [PhoneNo, setPhone] = useState("")
+    const [Adress, setAddress] = useState("")
+    const [PostalNo, setPostalNo] = useState("")
+    const [City, setCity] = useState("")
+    const [Email, setEmail] = useState("")
+    const [ProofOfIdentification, setProofOfIdentification] = useState(true)
+    const [IdentificationType, setIdentificationType] = useState('')
+    const [CreatedBy, setCreatedBy] = useState(null)
+
+    const submit = async (e:any) => {
         e.preventDefault()
         try {
-            const body = {firstName, lastName, ssn, phone, adress, postalNo, city, email, proofOfIdentification, identificationType, createdBy}
-            const response = await fetch("http://92.33.147.95:35000/patient/all", {
+            const body = {FirstName, LastName, SocialSecurityNumber, PhoneNo, Adress, PostalNo, City, Email, ProofOfIdentification, IdentificationType, CreatedBy}
+            const response = await fetch(process.env.REACT_APP_API_URL+"/patient/add", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             })
+            console.log(response)
         } catch (error) {
             console.log(error);
-            
         }
 
-    if (firstName === "" || lastName === "" || ssn === "") {
-      M.toast({ html: "Please enter a firstname, lastname and social security number" });
-    } else {
-      console.log(firstName, lastName);
-      // Clear fields
-      setFirstName("");
-      setLastName("");
-      setSSN("");
-    }
+    // if (firstName === "" || lastName === "" || ssn === "") {
+    //   M.toast({ html: "Please enter a firstname, lastname and social security number" });
+    // } else {
+    //   console.log(firstName, lastName);
+    //   // Clear fields
+    //   setFirstName("");
+    //   setLastName("");
+    //   setSSN("");
+    // }
   };
 
   return (
@@ -47,7 +47,7 @@ const AddPatientModal = () => {
             <input
               type="text"
               name="firstName"
-              value={firstName}
+              value={FirstName}
               onChange={(e) => setFirstName(e.target.value)}
             />
             <label htmlFor="firstName" className="active">
@@ -60,7 +60,7 @@ const AddPatientModal = () => {
             <input
               type="text"
               name="lastName"
-              value={lastName}
+              value={LastName}
               onChange={(e) => setLastName(e.target.value)}
             />
             <label htmlFor="lastName" className="active">
@@ -73,7 +73,7 @@ const AddPatientModal = () => {
             <input
               type="text"
               name="email"
-              value={email}
+              value={Email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <label htmlFor="email" className="active">
@@ -86,10 +86,10 @@ const AddPatientModal = () => {
             <input
               type="text"
               name="ssn"
-              value={ssn}
+              value={SocialSecurityNumber}
               onChange={(e) => setSSN(e.target.value)}
             />
-            <label htmlFor="ssn" className="active">
+            <label htmlFor="SocialSecurityNumber" className="active">
               Social Security Number
             </label>
           </div>
@@ -99,7 +99,7 @@ const AddPatientModal = () => {
             <input
               type="text"
               name="phone"
-              value={phone}
+              value={PhoneNo}
               onChange={(e) => setPhone(e.target.value)}
             />
             <label htmlFor="phone" className="active">
@@ -112,7 +112,7 @@ const AddPatientModal = () => {
             <input
               type="text"
               name="adress"
-              value={adress}
+              value={Adress}
               onChange={(e) => setAddress(e.target.value)}
             />
             <label htmlFor="adress" className="active">
@@ -125,7 +125,7 @@ const AddPatientModal = () => {
             <input
               type="text"
               name="postalNo"
-              value={postalNo}
+              value={PostalNo}
               onChange={(e) => setPostalNo(e.target.value)}
             />
             <label htmlFor="postalNo" className="active">
@@ -138,7 +138,7 @@ const AddPatientModal = () => {
             <input
               type="text"
               name="city"
-              value={city}
+              value={City}
               onChange={(e) => setCity(e.target.value)}
             />
             <label htmlFor="city" className="active">
@@ -151,10 +151,10 @@ const AddPatientModal = () => {
             <input
               type="text"
               name="identificationType"
-              value={identificationType}
+              value={IdentificationType}
               onChange={(e) => setIdentificationType(e.target.value)}
             />
-            <label htmlFor="lastName" className="active">
+            <label htmlFor="identificationType" className="active">
               Identification Type
             </label>
           </div>
@@ -163,7 +163,7 @@ const AddPatientModal = () => {
       <div className="modal-footer">
         <a
           href="#!"
-          onSubmit={onSubmit}
+          onClick={submit}
           className="modal-close waves-effect blue waves-light btn"
         >
           Enter

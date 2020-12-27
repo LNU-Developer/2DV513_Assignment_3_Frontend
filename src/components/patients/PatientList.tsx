@@ -4,7 +4,7 @@ const PatientList = () => {
     const [patients, setPatients] = useState<any[]>([]);
 
     const getPatients = async () => {
-            const response = await fetch("http://92.33.147.95:35000/patient/all");
+            const response = await fetch(process.env.REACT_APP_API_URL+"/patient/all");
             const jsonData = await response.json();
             setPatients(jsonData)
     }
