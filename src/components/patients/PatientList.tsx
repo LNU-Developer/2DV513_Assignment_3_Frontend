@@ -1,8 +1,24 @@
 import React, {useState, useEffect} from 'react'
 import EditPatientModal from './EditPatientModal'
 
+type Patient = {
+    FirstName: string,
+    LastName: string,
+    SocialSecurityNumber: string,
+    PhoneNo: string,
+    Adress: string,
+    PostalNo: string,
+    City: string,
+    Email: string,
+    ProofOfIdentification: boolean,
+    IdentificationType: string,
+    CreatedBy: number,
+    IsDeleted: boolean,
+    CreatedDate: Date
+  }
+
 const PatientList = () => {
-    const [patients, setPatients] = useState<any[]>([]);
+    const [patients, setPatients] = useState<Patient[]>([]);
 
     const deletePatient = async (ssn: string) => {
         try {
@@ -29,11 +45,13 @@ const PatientList = () => {
         <>
             {
                 patients.map((patient) => {
+
                     return <div key={patient.SocialSecurityNumber}>
+                        <EditPatientModal patient={patient} />
                         <h4>
-                            <a href="#edit-patient-modal" className="btn-floating blue modal-trigger">
-                                <i className="material-icons"><EditPatientModal patient={patient} /></i>
-                            </a>
+                            <button data-target="edit-patient-modal" className="btn-floating blue modal-trigger">
+
+                            </button>
 
                             <button className="btn-floating red" onClick={() => deletePatient(patient.SocialSecurityNumber)}>
                                 <i className="material-icons">clear</i>

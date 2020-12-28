@@ -4,7 +4,6 @@ import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 import AddPatientModal from './components/patients/AddPatientModal'
-import EditPatientModal from './components/patients/EditPatientModal'
 import PatientList from './components/patients/PatientList'
 import AddButton from './components/layout/AddButton'
 
@@ -20,7 +19,6 @@ function App() {
         <PatientList />
         <AddButton />
         <AddPatientModal />
-        <EditPatientModal />
       </div>
     </>
   );

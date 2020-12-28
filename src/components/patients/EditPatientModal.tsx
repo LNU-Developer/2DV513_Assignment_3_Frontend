@@ -1,6 +1,21 @@
 import React, {useState} from 'react'
 
-const EditPatientModal = ({patient}) => {
+interface Patient {
+  FirstName: string,
+  LastName: string,
+  SocialSecurityNumber: string,
+  PhoneNo: string,
+  Adress: string,
+  PostalNo: string,
+  City: string,
+  Email: string,
+  ProofOfIdentification: boolean,
+  IdentificationType: string,
+  CreatedBy: number,
+  IsDeleted: boolean
+}
+
+const EditPatientModal = (props: {patient : Patient} )   => {
     const [FirstName, setFirstName] = useState('')
     const [LastName, setLastName] = useState('')
     const [SocialSecurityNumber, setSSN] = useState('')
@@ -16,8 +31,9 @@ const EditPatientModal = ({patient}) => {
     const updatePatient = async (e:any) => {
         e.preventDefault()
         try {
+          console.log(props.patient.SocialSecurityNumber)
             const body = {FirstName, LastName, SocialSecurityNumber, PhoneNo, Adress, PostalNo, City, Email, ProofOfIdentification, IdentificationType, CreatedBy}
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/patient/edit${patient.SocialSecurityNumber}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/patient/edit`, {
                 method: "PUT",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
