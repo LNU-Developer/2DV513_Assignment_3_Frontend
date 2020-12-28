@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import EditPatientModal from './EditPatientModal'
 
 const PatientList = () => {
     const [patients, setPatients] = useState<any[]>([]);
@@ -27,11 +28,11 @@ const PatientList = () => {
     return (
         <>
             {
-                patients.map(patient => {
+                patients.map((patient) => {
                     return <div key={patient.SocialSecurityNumber}>
                         <h4>
                             <a href="#edit-patient-modal" className="btn-floating blue modal-trigger">
-                                <i className="material-icons">edit</i>
+                                <i className="material-icons"><EditPatientModal patient={patient} /></i>
                             </a>
 
                             <button className="btn-floating red" onClick={() => deletePatient(patient.SocialSecurityNumber)}>

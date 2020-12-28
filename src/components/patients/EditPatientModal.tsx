@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const EditPatientModal = () => {
+const EditPatientModal = ({patient}) => {
     const [FirstName, setFirstName] = useState('')
     const [LastName, setLastName] = useState('')
     const [SocialSecurityNumber, setSSN] = useState('')
@@ -13,12 +13,12 @@ const EditPatientModal = () => {
     const [IdentificationType, setIdentificationType] = useState('')
     const [CreatedBy, setCreatedBy] = useState(null)
 
-    const submit = async (e:any) => {
+    const updatePatient = async (e:any) => {
         e.preventDefault()
         try {
             const body = {FirstName, LastName, SocialSecurityNumber, PhoneNo, Adress, PostalNo, City, Email, ProofOfIdentification, IdentificationType, CreatedBy}
-            const response = await fetch(process.env.REACT_APP_API_URL+"/patient/add", {
-                method: "POST",
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/patient/edit${patient.SocialSecurityNumber}`, {
+                method: "PUT",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             })
@@ -163,7 +163,7 @@ const EditPatientModal = () => {
       <div className="modal-footer">
         <a
           href="#!"
-          onClick={submit}
+          onClick={updatePatient}
           className="modal-close waves-effect blue waves-light btn"
         >
           Enter
