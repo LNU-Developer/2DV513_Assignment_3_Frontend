@@ -29,10 +29,17 @@ const PatientList = () => {
             {
                 patients.map(patient => {
                     return <div key={patient.SocialSecurityNumber}>
-                        <h4>{patient.FirstName} {patient.LastName}</h4>
-                        <button onClick={() => deletePatient(patient.SocialSecurityNumber)}>
-                            <i className="material-icons">clear</i>
-                        </button>
+                        <h4>
+                            <a href="#edit-patient-modal" className="btn-floating blue modal-trigger">
+                                <i className="material-icons">edit</i>
+                            </a>
+
+                            <button className="btn-floating red" onClick={() => deletePatient(patient.SocialSecurityNumber)}>
+                                <i className="material-icons">clear</i>
+                            </button>
+
+                            {patient.FirstName} {patient.LastName}
+                        </h4>
                         <p>Personnummer: {patient.SocialSecurityNumber}</p>
                         <p>Identification Type: {patient.IdentificationType}</p>
                         <p>Skapad av: {patient.CreatedBy} - <span>{patient.CreatedDate}</span></p>
