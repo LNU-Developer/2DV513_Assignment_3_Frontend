@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import EditPatientModal from './EditPatientModal'
 
-type Patient = {
+interface Patient {
     FirstName: string,
     LastName: string,
     SocialSecurityNumber: string,
@@ -10,10 +10,8 @@ type Patient = {
     PostalNo: string,
     City: string,
     Email: string,
-    ProofOfIdentification: boolean,
     IdentificationType: string,
     CreatedBy: number,
-    IsDeleted: boolean,
     CreatedDate: Date
   }
 
@@ -22,7 +20,7 @@ const PatientList = () => {
 
     const deletePatient = async (ssn: string) => {
         try {
-            const deletePatient = await fetch(`${process.env.REACT_APP_API_URL}/patient/${ssn}`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/patient/${ssn}`, {
                 method: "DELETE",
             });
             setPatients(patients.filter(patient => patient.SocialSecurityNumber !== ssn))
@@ -36,6 +34,10 @@ const PatientList = () => {
             const jsonData = await response.json();
             setPatients(jsonData)
     }
+    useEffect(() => {
+        // init materialize JS
+        M.AutoInit();
+      });
 
     useEffect(() => {
         getPatients()
@@ -45,13 +47,12 @@ const PatientList = () => {
         <>
             {
                 patients.map((patient) => {
-
                     return <div key={patient.SocialSecurityNumber}>
-                        <EditPatientModal patient={patient} />
                         <h4>
-                            <button data-target="edit-patient-modal" className="btn-floating blue modal-trigger">
-
-                            </button>
+                            <a href={`#${patient.SocialSecurityNumber}`} className="btn-floating blue modal-trigger">
+                                <i className="material-icons">edit</i>
+                            </a>
+                            <EditPatientModal patient={patient} />
 
                             <button className="btn-floating red" onClick={() => deletePatient(patient.SocialSecurityNumber)}>
                                 <i className="material-icons">clear</i>

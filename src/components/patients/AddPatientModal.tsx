@@ -9,14 +9,13 @@ const AddPatientModal = () => {
     const [PostalNo, setPostalNo] = useState("")
     const [City, setCity] = useState("")
     const [Email, setEmail] = useState("")
-    const [ProofOfIdentification, setProofOfIdentification] = useState(true)
     const [IdentificationType, setIdentificationType] = useState('')
     const [CreatedBy, setCreatedBy] = useState(null)
 
     const submit = async (e:any) => {
         e.preventDefault()
         try {
-            const body = {FirstName, LastName, SocialSecurityNumber, PhoneNo, Adress, PostalNo, City, Email, ProofOfIdentification, IdentificationType, CreatedBy}
+            const body = {FirstName, LastName, SocialSecurityNumber, PhoneNo, Adress, PostalNo, City, Email, IdentificationType, CreatedBy}
             const response = await fetch(process.env.REACT_APP_API_URL+"/patient/add", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},

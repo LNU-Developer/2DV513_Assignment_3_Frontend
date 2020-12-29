@@ -9,36 +9,31 @@ interface Patient {
   PostalNo: string,
   City: string,
   Email: string,
-  ProofOfIdentification: boolean,
   IdentificationType: string,
   CreatedBy: number,
-  IsDeleted: boolean
 }
 
 const EditPatientModal = (props: {patient : Patient} )   => {
-    const [FirstName, setFirstName] = useState('')
-    const [LastName, setLastName] = useState('')
-    const [SocialSecurityNumber, setSSN] = useState('')
-    const [PhoneNo, setPhone] = useState("")
-    const [Adress, setAddress] = useState("")
-    const [PostalNo, setPostalNo] = useState("")
-    const [City, setCity] = useState("")
-    const [Email, setEmail] = useState("")
-    const [ProofOfIdentification, setProofOfIdentification] = useState(true)
-    const [IdentificationType, setIdentificationType] = useState('')
+    const [FirstName, setFirstName] = useState(props.patient.FirstName)
+    const [LastName, setLastName] = useState(props.patient.LastName)
+    const [SocialSecurityNumber, setSSN] = useState(props.patient.SocialSecurityNumber)
+    const [PhoneNo, setPhone] = useState(props.patient.PhoneNo)
+    const [Adress, setAddress] = useState(props.patient.Adress)
+    const [PostalNo, setPostalNo] = useState(props.patient.PostalNo)
+    const [City, setCity] = useState(props.patient.City)
+    const [Email, setEmail] = useState(props.patient.Email)
+    const [IdentificationType, setIdentificationType] = useState(props.patient.IdentificationType)
     const [CreatedBy, setCreatedBy] = useState(null)
 
     const updatePatient = async (e:any) => {
         e.preventDefault()
         try {
-          console.log(props.patient.SocialSecurityNumber)
-            const body = {FirstName, LastName, SocialSecurityNumber, PhoneNo, Adress, PostalNo, City, Email, ProofOfIdentification, IdentificationType, CreatedBy}
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/patient/edit`, {
+            const body = {FirstName, LastName, SocialSecurityNumber, PhoneNo, Adress, PostalNo, City, Email, IdentificationType, CreatedBy}
+            await fetch(`${process.env.REACT_APP_API_URL}/patient/edit`, {
                 method: "PUT",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             })
-            console.log(response)
         } catch (error) {
             console.log(error);
         }
@@ -55,7 +50,7 @@ const EditPatientModal = (props: {patient : Patient} )   => {
   };
 
   return (
-    <div id="edit-patient-modal" className="modal">
+    <div id={props.patient.SocialSecurityNumber} className="modal">
       <div className="modal-content">
         <h4>Edit Patient</h4>
         <div className="row">
