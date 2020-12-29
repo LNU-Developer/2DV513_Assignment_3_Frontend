@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 
 interface Patient {
+  PatientId: string,
   FirstName: string,
   LastName: string,
   SocialSecurityNumber: string,
@@ -14,6 +15,7 @@ interface Patient {
 }
 
 const EditPatientModal = (props: {patient : Patient, updatePatientList: any} )   => {
+    const [PatientId] = useState(props.patient.PatientId)
     const [FirstName, setFirstName] = useState(props.patient.FirstName)
     const [LastName, setLastName] = useState(props.patient.LastName)
     const [SocialSecurityNumber, setSSN] = useState(props.patient.SocialSecurityNumber)
@@ -28,7 +30,7 @@ const EditPatientModal = (props: {patient : Patient, updatePatientList: any} )  
     const updatePatient = async (e:any) => {
         e.preventDefault()
         try {
-            const body = {FirstName, LastName, SocialSecurityNumber, PhoneNo, Adress, PostalNo, City, Email, IdentificationType, CreatedBy}
+            const body = {PatientId, FirstName, LastName, SocialSecurityNumber, PhoneNo, Adress, PostalNo, City, Email, IdentificationType, CreatedBy}
             await fetch(`${process.env.REACT_APP_API_URL}/patient/edit`, {
                 method: "PUT",
                 headers: {"Content-Type": "application/json"},

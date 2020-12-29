@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import EditPatientModal from './EditPatientModal'
+import AddButton from '../layout/AddButton'
 import AddPatientModal from './AddPatientModal'
 
 interface Patient {
+    PatientId: string,
     FirstName: string,
     LastName: string,
     SocialSecurityNumber: string,
@@ -67,6 +69,7 @@ const PatientList = () => {
                     </div>
                 })
             }
+            <AddButton />
             <AddPatientModal updatePatientList={getPatients}/>
         </>
     )
