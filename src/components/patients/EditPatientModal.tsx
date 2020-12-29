@@ -13,7 +13,7 @@ interface Patient {
   CreatedBy: number,
 }
 
-const EditPatientModal = (props: {patient : Patient} )   => {
+const EditPatientModal = (props: {patient : Patient, updatePatientList: any} )   => {
     const [FirstName, setFirstName] = useState(props.patient.FirstName)
     const [LastName, setLastName] = useState(props.patient.LastName)
     const [SocialSecurityNumber, setSSN] = useState(props.patient.SocialSecurityNumber)
@@ -34,6 +34,7 @@ const EditPatientModal = (props: {patient : Patient} )   => {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             })
+            props.updatePatientList()
         } catch (error) {
             console.log(error);
         }

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import EditPatientModal from './EditPatientModal'
+import AddPatientModal from './AddPatientModal'
 
 interface Patient {
     FirstName: string,
@@ -52,7 +53,7 @@ const PatientList = () => {
                             <a href={`#${patient.SocialSecurityNumber}`} className="btn-floating blue modal-trigger">
                                 <i className="material-icons">edit</i>
                             </a>
-                            <EditPatientModal patient={patient} />
+                            <EditPatientModal patient={patient} updatePatientList={getPatients}/>
 
                             <button className="btn-floating red" onClick={() => deletePatient(patient.SocialSecurityNumber)}>
                                 <i className="material-icons">clear</i>
@@ -66,6 +67,7 @@ const PatientList = () => {
                     </div>
                 })
             }
+            <AddPatientModal updatePatientList={getPatients}/>
         </>
     )
 }

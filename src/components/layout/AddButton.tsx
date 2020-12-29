@@ -3,18 +3,12 @@ import React from "react";
 const AddButton = () => {
   return (
     <div className="fixed-action-btn">
-      <a
-        href="#"
-        className="btn-floating btn-large blue darken-2 modal-trigger"
-      >
+      <a href="#" className="btn-floating btn-large blue darken-2 modal-trigger">
         <i className="large material-icons">add</i>
       </a>
       <ul>
         <li>
-          <a
-            href="#add-journal-modal"
-            className="btn-floating green modal-trigger"
-          >
+          <a href="#add-journal-modal" className="btn-floating green modal-trigger">
             <i className="material-icons">assignment</i>
           </a>
         </li>

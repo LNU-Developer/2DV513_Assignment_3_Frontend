@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const AddPatientModal = () => {
+const AddPatientModal = (props: {updatePatientList: any}) => {
     const [FirstName, setFirstName] = useState('')
     const [LastName, setLastName] = useState('')
     const [SocialSecurityNumber, setSSN] = useState('')
@@ -21,7 +21,7 @@ const AddPatientModal = () => {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             })
-            console.log(response)
+            props.updatePatientList();
         } catch (error) {
             console.log(error);
         }
