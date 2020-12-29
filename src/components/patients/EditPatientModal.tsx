@@ -1,18 +1,5 @@
 import React, {useState} from 'react'
-
-interface Patient {
-  PatientId: string,
-  FirstName: string,
-  LastName: string,
-  SocialSecurityNumber: string,
-  PhoneNo: string,
-  Adress: string,
-  PostalNo: string,
-  City: string,
-  Email: string,
-  IdentificationType: string,
-  CreatedBy: number,
-}
+import Patient from '../interfaces/patient.interface'
 
 const EditPatientModal = (props: {patient : Patient, updatePatientList: any} )   => {
     const [PatientId] = useState(props.patient.PatientId)
