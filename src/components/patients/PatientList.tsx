@@ -3,8 +3,9 @@ import EditPatientModal from "./EditPatientModal";
 import AddButton from "../layout/AddButton";
 import AddPatientModal from "./AddPatientModal";
 import Patient from "../interfaces/patient.interface";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
-import "./patient.css"
+import "./patient.css";
 
 const PatientList = () => {
   const [patients, setPatients] = useState<Patient[]>([]);
@@ -46,23 +47,37 @@ const PatientList = () => {
             <div className="col s12 m6">
               <div className="card blue-grey darken-1">
                 <div className="card-content white-text">
-                  <span className="card-title">
-                    {patient.FirstName} {patient.LastName}
-                  </span>
-                  <div className="delete-btn">
-                     <button
-                    className="btn-floating red"
-                    onClick={() => deletePatient(patient.SocialSecurityNumber)}
-                  >
-                    <i className="material-icons">clear</i>
-                  </button>
-                  </div>
-                  <p>Personnummer: {patient.SocialSecurityNumber}</p>
-                  <p>Identification Type: {patient.IdentificationType}</p>
-                  <p>
-                    Skapad av: {patient.CreatedBy} -{" "}
-                    <span>{patient.CreatedDate}</span>
-                  </p>
+                  <ul className="collapsible">
+                    <li>
+                      <div className="collapsible-header">
+                        <span className="card-title">
+                          {patient.FirstName} {patient.LastName}
+                        </span>
+                        <div className="delete-btn">
+                          <button
+                            className="btn-floating red"
+                            onClick={() =>
+                              deletePatient(patient.SocialSecurityNumber)
+                            }
+                          >
+                            <i className="material-icons">clear</i>
+                          </button>
+                        </div>
+                      </div>
+                      <div className="collapsible-body">
+                        <>
+                          <p>Personnummer: {patient.SocialSecurityNumber}</p>
+                          <p>
+                            Identification Type: {patient.IdentificationType}
+                          </p>
+                          <p>
+                            Skapad av: {patient.CreatedBy} -{" "}
+                            <span>{patient.CreatedDate}</span>
+                          </p>
+                        </>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
                 <div className="card-action">
                   <a

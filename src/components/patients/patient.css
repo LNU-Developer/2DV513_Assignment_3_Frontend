@@ -1,5 +1,28 @@
 .delete-btn {
     position: absolute;
-    right: 23px;
-    top: 15px;
+    right: 40px;
+    top: 17px;
+}
+
+.card-title {
+    font-weight: bold !important;
+    letter-spacing: 0.5px !important;
+}
+
+.collapsible {
+    border: none !important;
+        box-shadow: none !important
+}
+
+.collapsible-header {
+    border-bottom: none !important;
+    background-color: transparent !important;
+}
+
+.collapsible-header i {
+    margin-right: 2px !important;
+}
+
+.collapsible-body {
+    border-bottom: none !important;
 }
