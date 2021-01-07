@@ -4,6 +4,7 @@ import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 import PatientList from './components/patients/PatientList'
+import Navbar from "./components/layout/Navbar"
 
 function App() {
    useEffect(() => {
@@ -12,8 +13,8 @@ function App() {
   });
   return (
      <>
+        <Navbar />
       <div className="container">
-        <h1>Journal App</h1>
         <PatientList />
       </div>
     </>
