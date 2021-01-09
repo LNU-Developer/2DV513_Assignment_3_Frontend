@@ -3,7 +3,6 @@ import EditPatientModal from "./EditPatientModal";
 import AddButton from "../layout/AddButton";
 import AddPatientModal from "./AddPatientModal";
 import Patient from "../interfaces/patient.interface";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import "./patient.css";
 
