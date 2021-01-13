@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import "materialize-css/dist/css/materialize.min.css";
 // @ts-ignore
 import M from "materialize-css/dist/js/materialize.min.js";
@@ -9,20 +9,26 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PatientList from './components/patients/PatientList'
 import FemaleList from './components/patients/FemaleList'
 import MaleList from './components/patients/MaleList'
+import CityList from './components/patients/CityList'
 import Navbar from "./components/layout/Navbar"
 
-function App() {
+import City from "./components/interfaces/city.interface";
+import Patient from "./components/interfaces/patient.interface";
+
+
+
+const App: React.FC = () => {
+ 
    useEffect(() => {
     // init materialize JS
     M.AutoInit();
   });
 
- 
 
   return (
      <>
      <Router>
-        <Navbar />
+        <Navbar  />
       <div className="container">
         <Switch>
           <Route exact path="/" component={PatientList} />
@@ -30,6 +36,7 @@ function App() {
             <FemaleList />
           )}/>
           <Route exact path="/patients/male" component={MaleList} />
+          <Route exact path="/patients/city" component={CityList} />
         </Switch>
       </div>
       </Router>

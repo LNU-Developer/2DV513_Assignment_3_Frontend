@@ -1,10 +1,43 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom'
+import City from "../interfaces/city.interface";
 
-const Navbar = () => {
+
+
+const Navbar: React.FC = () => {
+    const [cities, setCities] = useState<City[]>([]);
+
+    const getCityCount = async () => {
+    const response = await fetch(
+      process.env.REACT_APP_API_URL + "/patient/countcity"
+    );
+    const jsonData = await response.json();
+    console.log(jsonData);
+    setCities(jsonData);
+  };
+
+    useEffect(() => {
+    getCityCount();
+  }, []);
   return (
     <>
+      <ul id="dropdown1" className="dropdown-content">
+        {
+            cities.map(city => {
+                console.log(city);
+                
+                return (
+                    <li key={city.cityName}>
+            <Link to="/patients/city">{city.cityName}  ({city.count})</Link>
+        </li>
+                )
+            })
+        }
+      </ul>
       <ul id="dropdown" className="dropdown-content">
+        <li>
+          <Link to="/">All</Link>
+        </li>
         <li>
           <Link to="/patients/male">Male</Link>
         </li>
@@ -20,8 +53,13 @@ const Navbar = () => {
           </Link>
           <ul className="right hide-on-med-and-down">
             <li>
+              <a className="dropdown-trigger" href="#!" data-target="dropdown1">
+                City<i className="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+            <li>
               <a className="dropdown-trigger" href="#!" data-target="dropdown">
-                Dropdown<i className="material-icons right">arrow_drop_down</i>
+                Filter<i className="material-icons right">arrow_drop_down</i>
               </a>
             </li>
           </ul>

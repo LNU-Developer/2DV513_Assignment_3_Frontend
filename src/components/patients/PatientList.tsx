@@ -28,6 +28,7 @@ const PatientList = () => {
     );
     const jsonData = await response.json();
     setPatients(jsonData);
+    
   };
   useEffect(() => {
     // init materialize JS
@@ -38,9 +39,10 @@ const PatientList = () => {
     getPatients();
   }, []);
 
+
   return (
-    <>
-      {patients.map((patient) => {
+    <div>
+      {patients && !!patients.length && patients.map((patient) => {
         return (
           <div className="row" key={patient.SocialSecurityNumber}>
             <div className="col s12 m6">
@@ -97,7 +99,7 @@ const PatientList = () => {
       })}
       <AddButton />
       <AddPatientModal updatePatientList={getPatients} />
-    </>
+    </div>
   );
 };
 
