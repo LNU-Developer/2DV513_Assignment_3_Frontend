@@ -18,17 +18,29 @@ import Patient from "./components/interfaces/patient.interface";
 
 
 const App: React.FC = () => {
+  const [cities, setCities] = useState<City[]>([]);
+
+    const getCity = async () => {
+    const response = await fetch(
+      process.env.REACT_APP_API_URL + "/patient/:city"
+    );
+    const jsonData = await response.json();
+    console.log(jsonData);
+    setCities(jsonData);
+  };
  
    useEffect(() => {
     // init materialize JS
     M.AutoInit();
   });
 
+  
+
 
   return (
      <>
      <Router>
-        <Navbar  />
+        <Navbar   />
       <div className="container">
         <Switch>
           <Route exact path="/" component={PatientList} />
@@ -36,7 +48,9 @@ const App: React.FC = () => {
             <FemaleList />
           )}/>
           <Route exact path="/patients/male" component={MaleList} />
-          <Route exact path="/patients/city" component={CityList} />
+          <Route exact path="/patients/:city" render={props => (
+            <CityList {...props} /* getCity={getCity} */ />
+          )}/>
         </Switch>
       </div>
       </Router>

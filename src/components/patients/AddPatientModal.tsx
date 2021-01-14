@@ -39,16 +39,6 @@ const AddPatientModal = (props: { updatePatientList: any }) => {
         } catch (error) {
             console.log(error);
         }
-
-        // if (firstName === "" || lastName === "" || ssn === "") {
-        //   M.toast({ html: "Please enter a firstname, lastname and social security number" });
-        // } else {
-        //   console.log(firstName, lastName);
-        //   // Clear fields
-        //   setFirstName("");
-        //   setLastName("");
-        //   setSSN("");
-        // }
     };
 
     return (

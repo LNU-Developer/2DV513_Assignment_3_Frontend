@@ -5,7 +5,7 @@ const EditPatientModal = (props: {
     patient: Patient;
     updatePatientList: any;
 }) => {
-    const [PatientId] = useState(props.patient.PatientId);
+    const [UserId] = useState(props.patient.UserId);
     const [FirstName, setFirstName] = useState(props.patient.FirstName);
     const [LastName, setLastName] = useState(props.patient.LastName);
     const [SocialSecurityNumber, setSSN] = useState(
@@ -25,7 +25,7 @@ const EditPatientModal = (props: {
         e.preventDefault();
         try {
             const body = {
-                PatientId,
+                UserId,
                 FirstName,
                 LastName,
                 SocialSecurityNumber,
@@ -46,16 +46,6 @@ const EditPatientModal = (props: {
         } catch (error) {
             console.log(error);
         }
-
-        // if (firstName === "" || lastName === "" || ssn === "") {
-        //   M.toast({ html: "Please enter a firstname, lastname and social security number" });
-        // } else {
-        //   console.log(firstName, lastName);
-        //   // Clear fields
-        //   setFirstName("");
-        //   setLastName("");
-        //   setSSN("");
-        // }
     };
 
     return (

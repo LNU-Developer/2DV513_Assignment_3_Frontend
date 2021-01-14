@@ -4,6 +4,8 @@ import City from "../interfaces/city.interface";
 
 
 
+
+
 const Navbar: React.FC = () => {
     const [cities, setCities] = useState<City[]>([]);
 
@@ -23,12 +25,12 @@ const Navbar: React.FC = () => {
     <>
       <ul id="dropdown1" className="dropdown-content">
         {
-            cities.map(city => {
+            cities && !!cities.length && cities.map(city => {
                 console.log(city);
                 
                 return (
                     <li key={city.cityName}>
-            <Link to="/patients/city">{city.cityName}  ({city.count})</Link>
+            <Link to={`/patients/${city.cityName}`}>{city.cityName}  ({city.count})</Link>
         </li>
                 )
             })

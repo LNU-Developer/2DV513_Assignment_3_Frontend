@@ -27,6 +27,8 @@ const PatientList = () => {
       process.env.REACT_APP_API_URL + "/patient/all"
     );
     const jsonData = await response.json();
+    console.log(jsonData);
+    
     setPatients(jsonData);
     
   };
