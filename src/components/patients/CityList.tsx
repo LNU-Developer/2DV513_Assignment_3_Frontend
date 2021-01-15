@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback  } from "react";
 import { RouteComponentProps } from "react-router";
 import Patient from "../interfaces/patient.interface";
 
 interface Props extends RouteComponentProps <{city: string}> {
-    
+
 }
 
  const CityList: React.FC<Props> = ({match}) => {
      const [patientCity, setPatientCity] = useState<Patient[]>([]);
 
-    const getCityCount = async () => {
+  const getCityCount = useCallback(async () => {
     const response = await fetch(
       process.env.REACT_APP_API_URL + `/patient/${match.params.city}`
     );
     const jsonData = await response.json();
     console.log(jsonData);
     setPatientCity(jsonData);
-  };
-
+  }, [match.params.city])
     useEffect(() => {
     // init materialize JS
     M.AutoInit();
@@ -25,10 +24,10 @@ interface Props extends RouteComponentProps <{city: string}> {
 
     useEffect(() => {
     getCityCount();
-  }, []);
+  }, [getCityCount]);
 
     //console.log(match);
-    
+
     return (
          <>
       {patientCity.map((patient) => {
