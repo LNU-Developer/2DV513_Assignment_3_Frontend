@@ -6,15 +6,18 @@ import City from "../interfaces/city.interface";
 const Navbar: React.FC = () => {
   const [cities, setCities] = useState<City[]>([]);
 
-  const getCityCount = async () => {
+  
+
+  useEffect(() => {
+    const getCityCount = async () => {
     const response = await fetch(
       process.env.REACT_APP_API_URL + "/patient/countcity"
     );
     const jsonData = await response.json();
+    console.log(jsonData);
+    
     setCities(jsonData);
   };
-
-  useEffect(() => {
     getCityCount();
   }, []);
   return (
