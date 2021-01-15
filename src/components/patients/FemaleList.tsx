@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import Patient from "../interfaces/patient.interface";
-import {Link} from 'react-router-dom'
 
  const FemaleList = () => {
      const [femalePatients, setFemalePatients] = useState<Patient[]>([]);
@@ -10,7 +9,6 @@ import {Link} from 'react-router-dom'
       process.env.REACT_APP_API_URL + "/patient/female"
     );
     const jsonData = await response.json();
-    console.log(jsonData);
     setFemalePatients(jsonData);
   };
 
